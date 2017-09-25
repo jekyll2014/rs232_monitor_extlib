@@ -7,8 +7,8 @@
     <ProjectGuid>{7D040F27-7157-4526-994C-02147F58A2D0}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>RS232_monitor</RootNamespace>
-    <AssemblyName>RS232_monitor</AssemblyName>
+    <RootNamespace>RS232_monitor_extlib</RootNamespace>
+    <AssemblyName>RS232_monitor_extlib</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <IsWebBootstrapper>false</IsWebBootstrapper>

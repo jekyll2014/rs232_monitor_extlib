@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26430.15
+VisualStudioVersion = 15.0.26730.16
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RS232_monitor", "WindowsFormsApplication2\RS232_monitor.csproj", "{7D040F27-7157-4526-994C-02147F58A2D0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RS232_monitor_extlib", "WindowsFormsApplication2\RS232_monitor_extlib.csproj", "{7D040F27-7157-4526-994C-02147F58A2D0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -24,5 +24,8 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {08B6E6EF-1F44-4F01-9567-7036916B62DC}
 	EndGlobalSection
 EndGlobal
