@@ -1,15 +1,17 @@
-﻿using System;
+﻿using RJCP.IO.Ports;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
-using System.IO;
-using System.IO.Ports;
+//using System.IO;
+//using System.IO;
+//using System.IO.Ports;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace RS232_monitor
+namespace RS232_monitor_extlib
 {
     public partial class FormMain : Form
     {
@@ -17,6 +19,11 @@ namespace RS232_monitor
 Codepages list https://msdn.microsoft.com/en-us/library/system.text.encoding(v=vs.110).aspx
 const int inputCodePage = RS232_monitor.Properties.Settings.Default.CodePage;
 */
+        public SerialPortStream serialPort1 = new SerialPortStream();
+        public SerialPortStream serialPort2 = new SerialPortStream();
+        public SerialPortStream serialPort3 = new SerialPortStream();
+        public SerialPortStream serialPort4 = new SerialPortStream();
+
         bool o_cd1, o_dsr1, o_dtr1, o_rts1, o_cts1;
         bool o_cd2, o_dsr2, o_dtr2, o_rts2, o_cts2;
         bool o_cd3, o_dsr3, o_dtr3, o_rts3, o_cts3;
@@ -128,45 +135,51 @@ const int inputCodePage = RS232_monitor.Properties.Settings.Default.CodePage;
             column.Width = 30;
 
             //load settings
-            textBox_command.Text = RS232_monitor.Properties.Settings.Default.DefaultCommand;
-            checkBox_commandhex.Checked = RS232_monitor.Properties.Settings.Default.DefaultCommandHex;
-            textBox_params.Text = RS232_monitor.Properties.Settings.Default.DefaultParameter;
-            checkBox_paramhex.Checked = RS232_monitor.Properties.Settings.Default.DefaultParamHex;
-            checkBox_cr.Checked = RS232_monitor.Properties.Settings.Default.addCR;
-            checkBox_lf.Checked = RS232_monitor.Properties.Settings.Default.addLF;
-            checkBox_suff.Checked = RS232_monitor.Properties.Settings.Default.addSuff;
-            textBox_suff.Text = RS232_monitor.Properties.Settings.Default.SuffText;
-            checkBox_suffhex.Checked = RS232_monitor.Properties.Settings.Default.DefaultSuffHex;
-            checkBox_insPin.Checked = RS232_monitor.Properties.Settings.Default.LogSignal;
-            checkBox_insTime.Checked = RS232_monitor.Properties.Settings.Default.LogTime;
-            checkBox_insDir.Checked = RS232_monitor.Properties.Settings.Default.LogDir;
-            checkBox_portName.Checked = RS232_monitor.Properties.Settings.Default.LogPortName;
-            checkBox_displayPort1hex.Checked = RS232_monitor.Properties.Settings.Default.HexPort1;
-            checkBox_displayPort2hex.Checked = RS232_monitor.Properties.Settings.Default.HexPort2;
-            checkBox_displayPort3hex.Checked = RS232_monitor.Properties.Settings.Default.HexPort3;
-            checkBox_displayPort4hex.Checked = RS232_monitor.Properties.Settings.Default.HexPort4;
-            textBox_port1Name.Text = RS232_monitor.Properties.Settings.Default.Port1Name;
-            textBox_port2Name.Text = RS232_monitor.Properties.Settings.Default.Port2Name;
-            textBox_port3Name.Text = RS232_monitor.Properties.Settings.Default.Port3Name;
-            textBox_port4Name.Text = RS232_monitor.Properties.Settings.Default.Port4Name;
-            logToGridToolStripMenuItem.Checked = RS232_monitor.Properties.Settings.Default.LogGrid;
-            autoscrollToolStripMenuItem.Checked = RS232_monitor.Properties.Settings.Default.AutoScroll;
-            lineWrapToolStripMenuItem.Checked = RS232_monitor.Properties.Settings.Default.LineWrap;
-            autosaveTXTToolStripMenuItem1.Checked = RS232_monitor.Properties.Settings.Default.AutoLogTXT;
-            terminaltxtToolStripMenuItem1.Text = RS232_monitor.Properties.Settings.Default.TXTlogFile;
-            autosaveCSVToolStripMenuItem1.Checked = RS232_monitor.Properties.Settings.Default.AutoLogCSV;
-            terminalcsvToolStripMenuItem1.Text = RS232_monitor.Properties.Settings.Default.CSVlogFile;
-            LineBreakToolStripTextBox1.Text = RS232_monitor.Properties.Settings.Default.LineBreakTimeout.ToString();
-            limitTick = RS232_monitor.Properties.Settings.Default.LineBreakTimeout * 10000;
+            textBox_command.Text = RS232_monitor_extlib.Properties.Settings.Default.DefaultCommand;
+            checkBox_commandhex.Checked = RS232_monitor_extlib.Properties.Settings.Default.DefaultCommandHex;
+            textBox_params.Text = RS232_monitor_extlib.Properties.Settings.Default.DefaultParameter;
+            checkBox_paramhex.Checked = RS232_monitor_extlib.Properties.Settings.Default.DefaultParamHex;
+            checkBox_cr.Checked = RS232_monitor_extlib.Properties.Settings.Default.addCR;
+            checkBox_lf.Checked = RS232_monitor_extlib.Properties.Settings.Default.addLF;
+            checkBox_suff.Checked = RS232_monitor_extlib.Properties.Settings.Default.addSuff;
+            textBox_suff.Text = RS232_monitor_extlib.Properties.Settings.Default.SuffText;
+            checkBox_suffhex.Checked = RS232_monitor_extlib.Properties.Settings.Default.DefaultSuffHex;
+            checkBox_insPin.Checked = RS232_monitor_extlib.Properties.Settings.Default.LogSignal;
+            checkBox_insTime.Checked = RS232_monitor_extlib.Properties.Settings.Default.LogTime;
+            checkBox_insDir.Checked = RS232_monitor_extlib.Properties.Settings.Default.LogDir;
+            checkBox_portName.Checked = RS232_monitor_extlib.Properties.Settings.Default.LogPortName;
+            checkBox_displayPort1hex.Checked = RS232_monitor_extlib.Properties.Settings.Default.HexPort1;
+            checkBox_displayPort2hex.Checked = RS232_monitor_extlib.Properties.Settings.Default.HexPort2;
+            checkBox_displayPort3hex.Checked = RS232_monitor_extlib.Properties.Settings.Default.HexPort3;
+            checkBox_displayPort4hex.Checked = RS232_monitor_extlib.Properties.Settings.Default.HexPort4;
+            textBox_port1Name.Text = RS232_monitor_extlib.Properties.Settings.Default.Port1Name;
+            textBox_port2Name.Text = RS232_monitor_extlib.Properties.Settings.Default.Port2Name;
+            textBox_port3Name.Text = RS232_monitor_extlib.Properties.Settings.Default.Port3Name;
+            textBox_port4Name.Text = RS232_monitor_extlib.Properties.Settings.Default.Port4Name;
+            logToGridToolStripMenuItem.Checked = RS232_monitor_extlib.Properties.Settings.Default.LogGrid;
+            autoscrollToolStripMenuItem.Checked = RS232_monitor_extlib.Properties.Settings.Default.AutoScroll;
+            lineWrapToolStripMenuItem.Checked = RS232_monitor_extlib.Properties.Settings.Default.LineWrap;
+            autosaveTXTToolStripMenuItem1.Checked = RS232_monitor_extlib.Properties.Settings.Default.AutoLogTXT;
+            terminaltxtToolStripMenuItem1.Text = RS232_monitor_extlib.Properties.Settings.Default.TXTlogFile;
+            autosaveCSVToolStripMenuItem1.Checked = RS232_monitor_extlib.Properties.Settings.Default.AutoLogCSV;
+            terminalcsvToolStripMenuItem1.Text = RS232_monitor_extlib.Properties.Settings.Default.CSVlogFile;
+            LineBreakToolStripTextBox1.Text = RS232_monitor_extlib.Properties.Settings.Default.LineBreakTimeout.ToString();
+            limitTick = RS232_monitor_extlib.Properties.Settings.Default.LineBreakTimeout * 10000;
 
             if (autosaveTXTToolStripMenuItem1.Checked == true) terminaltxtToolStripMenuItem1.Enabled = true;
             else terminaltxtToolStripMenuItem1.Enabled = false;
 
             //set the codepage to COM-port
-            serialPort1.Encoding = Encoding.GetEncoding(RS232_monitor.Properties.Settings.Default.CodePage);
-            serialPort2.Encoding = Encoding.GetEncoding(RS232_monitor.Properties.Settings.Default.CodePage);
-            serialPort3.Encoding = Encoding.GetEncoding(RS232_monitor.Properties.Settings.Default.CodePage);
-            serialPort4.Encoding = Encoding.GetEncoding(RS232_monitor.Properties.Settings.Default.CodePage);
+            serialPort1.Encoding = Encoding.GetEncoding(RS232_monitor_extlib.Properties.Settings.Default.CodePage);
+            serialPort2.Encoding = Encoding.GetEncoding(RS232_monitor_extlib.Properties.Settings.Default.CodePage);
+            serialPort3.Encoding = Encoding.GetEncoding(RS232_monitor_extlib.Properties.Settings.Default.CodePage);
+            serialPort4.Encoding = Encoding.GetEncoding(RS232_monitor_extlib.Properties.Settings.Default.CodePage);
+
+            this.serialPort1.ErrorReceived += this.serialPort1_ErrorReceived;
+            this.serialPort2.ErrorReceived += this.serialPort2_ErrorReceived;
+            this.serialPort3.ErrorReceived += this.serialPort3_ErrorReceived;
+            this.serialPort4.ErrorReceived += this.serialPort4_ErrorReceived;
+
             SerialPopulate();
         }
 
@@ -214,11 +227,11 @@ const int inputCodePage = RS232_monitor.Properties.Settings.Default.CodePage;
                 serialPort1.PortName = comboBox_portname1.Text;
                 serialPort1.BaudRate = Convert.ToInt32(comboBox_portspeed1.Text);
                 serialPort1.DataBits = Convert.ToUInt16(comboBox_databits1.Text);
-                serialPort1.Handshake = (Handshake)Enum.Parse(typeof(Handshake), comboBox_handshake1.Text);
-                serialPort1.Parity = (Parity)Enum.Parse(typeof(Parity), comboBox_parity1.Text);
-                serialPort1.StopBits = (StopBits)Enum.Parse(typeof(StopBits), comboBox_stopbits1.Text);
-                serialPort1.ReadTimeout = RS232_monitor.Properties.Settings.Default.ReceiveTimeOut;
-                serialPort1.WriteTimeout = RS232_monitor.Properties.Settings.Default.SendTimeOut;
+                serialPort1.Handshake = (RJCP.IO.Ports.Handshake)Enum.Parse(typeof(RJCP.IO.Ports.Handshake), comboBox_handshake1.Text);
+                serialPort1.Parity = (RJCP.IO.Ports.Parity)Enum.Parse(typeof(RJCP.IO.Ports.Parity), comboBox_parity1.Text);
+                serialPort1.StopBits = (RJCP.IO.Ports.StopBits)Enum.Parse(typeof(RJCP.IO.Ports.StopBits), comboBox_stopbits1.Text);
+                serialPort1.ReadTimeout = RS232_monitor_extlib.Properties.Settings.Default.ReceiveTimeOut;
+                serialPort1.WriteTimeout = RS232_monitor_extlib.Properties.Settings.Default.SendTimeOut;
                 serialPort1.ReadBufferSize = 8192;
                 try
                 {
@@ -257,7 +270,7 @@ const int inputCodePage = RS232_monitor.Properties.Settings.Default.CodePage;
 
                     return;
                 }
-                if (checkBox_insPin.Checked) this.serialPort1.PinChanged += this.serialPort1_PinChanged;
+                if (checkBox_insPin.Checked) serialPort1.PinChanged     += this.serialPort1_PinChanged;
                 this.serialPort1.DataReceived += this.serialPort1_DataReceived;
                 button_refresh.Enabled = false;
                 button_closeport.Enabled = true;
@@ -272,7 +285,7 @@ const int inputCodePage = RS232_monitor.Properties.Settings.Default.CodePage;
                 checkBox_CTS1.Checked = o_cts1;
                 checkBox_DTR1.Enabled = true;
 
-                if (serialPort1.Handshake == Handshake.RequestToSend || serialPort1.Handshake == Handshake.RequestToSendXOnXOff)
+                if (serialPort1.Handshake == Handshake.Rts || serialPort1.Handshake == Handshake.XOn)
                 {
                     checkBox_RTS1.Enabled = false;
                 }
@@ -319,8 +332,8 @@ const int inputCodePage = RS232_monitor.Properties.Settings.Default.CodePage;
                 serialPort2.Handshake = (Handshake)Enum.Parse(typeof(Handshake), comboBox_handshake2.Text);
                 serialPort2.Parity = (Parity)Enum.Parse(typeof(Parity), comboBox_parity2.Text);
                 serialPort2.StopBits = (StopBits)Enum.Parse(typeof(StopBits), comboBox_stopbits2.Text);
-                serialPort2.ReadTimeout = RS232_monitor.Properties.Settings.Default.ReceiveTimeOut;
-                serialPort2.WriteTimeout = RS232_monitor.Properties.Settings.Default.SendTimeOut;
+                serialPort2.ReadTimeout = RS232_monitor_extlib.Properties.Settings.Default.ReceiveTimeOut;
+                serialPort2.WriteTimeout = RS232_monitor_extlib.Properties.Settings.Default.SendTimeOut;
                 serialPort2.ReadBufferSize = 8192;
                 try
                 {
@@ -372,7 +385,7 @@ const int inputCodePage = RS232_monitor.Properties.Settings.Default.CodePage;
                 o_cts2 = serialPort2.CtsHolding;
                 checkBox_CTS2.Checked = o_cts2;
                 checkBox_DTR2.Enabled = true;
-                if (serialPort2.Handshake == Handshake.RequestToSend || serialPort2.Handshake == Handshake.RequestToSendXOnXOff)
+                if (serialPort2.Handshake == Handshake.Rts || serialPort2.Handshake == Handshake.XOn)
                 {
                     checkBox_RTS2.Enabled = false;
                 }
@@ -419,8 +432,8 @@ const int inputCodePage = RS232_monitor.Properties.Settings.Default.CodePage;
                 serialPort3.Handshake = (Handshake)Enum.Parse(typeof(Handshake), comboBox_handshake3.Text);
                 serialPort3.Parity = (Parity)Enum.Parse(typeof(Parity), comboBox_parity3.Text);
                 serialPort3.StopBits = (StopBits)Enum.Parse(typeof(StopBits), comboBox_stopbits3.Text);
-                serialPort3.ReadTimeout = RS232_monitor.Properties.Settings.Default.ReceiveTimeOut;
-                serialPort3.WriteTimeout = RS232_monitor.Properties.Settings.Default.SendTimeOut;
+                serialPort3.ReadTimeout = RS232_monitor_extlib.Properties.Settings.Default.ReceiveTimeOut;
+                serialPort3.WriteTimeout = RS232_monitor_extlib.Properties.Settings.Default.SendTimeOut;
                 serialPort3.ReadBufferSize = 8192;
                 try
                 {
@@ -472,7 +485,7 @@ const int inputCodePage = RS232_monitor.Properties.Settings.Default.CodePage;
                 o_cts3 = serialPort3.CtsHolding;
                 checkBox_CTS3.Checked = o_cts3;
                 checkBox_DTR3.Enabled = true;
-                if (serialPort3.Handshake == Handshake.RequestToSend || serialPort3.Handshake == Handshake.RequestToSendXOnXOff)
+                if (serialPort3.Handshake == Handshake.Rts || serialPort3.Handshake == Handshake.XOn)
                 {
                     checkBox_RTS3.Enabled = false;
                 }
@@ -519,8 +532,8 @@ const int inputCodePage = RS232_monitor.Properties.Settings.Default.CodePage;
                 serialPort4.Handshake = (Handshake)Enum.Parse(typeof(Handshake), comboBox_handshake4.Text);
                 serialPort4.Parity = (Parity)Enum.Parse(typeof(Parity), comboBox_parity4.Text);
                 serialPort4.StopBits = (StopBits)Enum.Parse(typeof(StopBits), comboBox_stopbits4.Text);
-                serialPort4.ReadTimeout = RS232_monitor.Properties.Settings.Default.ReceiveTimeOut;
-                serialPort4.WriteTimeout = RS232_monitor.Properties.Settings.Default.SendTimeOut;
+                serialPort4.ReadTimeout = RS232_monitor_extlib.Properties.Settings.Default.ReceiveTimeOut;
+                serialPort4.WriteTimeout = RS232_monitor_extlib.Properties.Settings.Default.SendTimeOut;
                 serialPort4.ReadBufferSize = 8192;
                 try
                 {
@@ -572,7 +585,7 @@ const int inputCodePage = RS232_monitor.Properties.Settings.Default.CodePage;
                 o_cts4 = serialPort4.CtsHolding;
                 checkBox_CTS4.Checked = o_cts4;
                 checkBox_DTR4.Enabled = true;
-                if (serialPort4.Handshake == Handshake.RequestToSend || serialPort4.Handshake == Handshake.RequestToSendXOnXOff)
+                if (serialPort4.Handshake == Handshake.Rts || serialPort4.Handshake == Handshake.XOn)
                 {
                     checkBox_RTS4.Enabled = false;
                 }
@@ -832,7 +845,7 @@ const int inputCodePage = RS232_monitor.Properties.Settings.Default.CodePage;
             }
         }
 
-        private void serialPort1_DataReceived(object sender, System.IO.Ports.SerialDataReceivedEventArgs e)
+        private void serialPort1_DataReceived(object sender, SerialDataReceivedEventArgs e)
         {
             List<byte> rx1 = new List<byte>();
             DataRow dataRowRX1 = CSVdataTable.NewRow();
@@ -863,7 +876,7 @@ const int inputCodePage = RS232_monitor.Properties.Settings.Default.CodePage;
             //if (checkBox_insTime.Checked == true) outStr1 += dataRowRX1["Date"] + " " + dataRowRX1["Time"] + "." + dataRowRX1["Milis"] + " ";
             //if (checkBox_insDir.Checked == true) outStr1 += portname1 + "<< ";
             if (checkBox_displayPort1hex.Checked == true) outStr1 += dataRowRX1["Data"];
-            else outStr1 += System.Text.Encoding.GetEncoding(RS232_monitor.Properties.Settings.Default.CodePage).GetString(rx1.ToArray(), 0, rx1.Count);
+            else outStr1 += System.Text.Encoding.GetEncoding(RS232_monitor_extlib.Properties.Settings.Default.CodePage).GetString(rx1.ToArray(), 0, rx1.Count);
             collectBuffer(outStr1, Port1DataIn, dataRowRX1["Date"] + " " + dataRowRX1["Time"] + "." + dataRowRX1["Milis"]);
             if (autosaveCSVToolStripMenuItem1.Checked == true) CSVcollectBuffer(dataRowRX1["Date"] + "," + dataRowRX1["Time"] + "," + dataRowRX1["Milis"] + "," + dataRowRX1["Port"] + "," + dataRowRX1["Dir"] + "," + dataRowRX1["Data"] + "," + dataRowRX1["Signal"] + "," + dataRowRX1["Mark"] + "\r\n");
         }
@@ -899,7 +912,7 @@ const int inputCodePage = RS232_monitor.Properties.Settings.Default.CodePage;
             //if (checkBox_insTime.Checked == true) outStr2 += dataRowRX2["Date"] + " " + dataRowRX2["Time"] + "." + dataRowRX2["Milis"] + " ";
             //if (checkBox_insDir.Checked == true) outStr2 += portname2 + "<< ";
             if (checkBox_displayPort2hex.Checked == true) outStr2 += dataRowRX2["Data"];
-            else outStr2 += System.Text.Encoding.GetEncoding(RS232_monitor.Properties.Settings.Default.CodePage).GetString(rx2.ToArray(), 0, rx2.Count);
+            else outStr2 += System.Text.Encoding.GetEncoding(RS232_monitor_extlib.Properties.Settings.Default.CodePage).GetString(rx2.ToArray(), 0, rx2.Count);
             collectBuffer(outStr2, Port2DataIn, dataRowRX2["Date"] + " " + dataRowRX2["Time"] + "." + dataRowRX2["Milis"]);
             if (autosaveCSVToolStripMenuItem1.Checked == true) CSVcollectBuffer(dataRowRX2["Date"] + "," + dataRowRX2["Time"] + "," + dataRowRX2["Milis"] + "," + dataRowRX2["Port"] + "," + dataRowRX2["Dir"] + "," + dataRowRX2["Data"] + "," + dataRowRX2["Signal"] + "," + dataRowRX2["Mark"] + "\r\n");
         }
@@ -935,7 +948,7 @@ const int inputCodePage = RS232_monitor.Properties.Settings.Default.CodePage;
             //if (checkBox_insTime.Checked == true) outStr2 += dataRowRX2["Date"] + " " + dataRowRX2["Time"] + "." + dataRowRX2["Milis"] + " ";
             //kif (checkBox_insDir.Checked == true) outStr2 += portname2 + "<< ";
             if (checkBox_displayPort3hex.Checked == true) outStr3 += dataRowRX3["Data"];
-            else outStr3 += System.Text.Encoding.GetEncoding(RS232_monitor.Properties.Settings.Default.CodePage).GetString(rx3.ToArray(), 0, rx3.Count);
+            else outStr3 += System.Text.Encoding.GetEncoding(RS232_monitor_extlib.Properties.Settings.Default.CodePage).GetString(rx3.ToArray(), 0, rx3.Count);
             collectBuffer(outStr3, Port3DataIn, dataRowRX3["Date"] + " " + dataRowRX3["Time"] + "." + dataRowRX3["Milis"]);
             if (autosaveCSVToolStripMenuItem1.Checked == true) CSVcollectBuffer(dataRowRX3["Date"] + "," + dataRowRX3["Time"] + "," + dataRowRX3["Milis"] + "," + dataRowRX3["Port"] + "," + dataRowRX3["Dir"] + "," + dataRowRX3["Data"] + "," + dataRowRX3["Signal"] + "," + dataRowRX3["Mark"] + "\r\n");
         }
@@ -971,7 +984,7 @@ const int inputCodePage = RS232_monitor.Properties.Settings.Default.CodePage;
             //if (checkBox_insTime.Checked == true) outStr2 += dataRowRX2["Date"] + " " + dataRowRX2["Time"] + "." + dataRowRX2["Milis"] + " ";
             //kif (checkBox_insDir.Checked == true) outStr2 += portname2 + "<< ";
             if (checkBox_displayPort4hex.Checked == true) outStr4 += dataRowRX4["Data"];
-            else outStr4 += System.Text.Encoding.GetEncoding(RS232_monitor.Properties.Settings.Default.CodePage).GetString(rx4.ToArray(), 0, rx4.Count);
+            else outStr4 += System.Text.Encoding.GetEncoding(RS232_monitor_extlib.Properties.Settings.Default.CodePage).GetString(rx4.ToArray(), 0, rx4.Count);
             collectBuffer(outStr4, Port4DataIn, dataRowRX4["Date"] + " " + dataRowRX4["Time"] + "." + dataRowRX4["Milis"]);
             if (autosaveCSVToolStripMenuItem1.Checked == true) CSVcollectBuffer(dataRowRX4["Date"] + "," + dataRowRX4["Time"] + "," + dataRowRX4["Milis"] + "," + dataRowRX4["Port"] + "," + dataRowRX4["Dir"] + "," + dataRowRX4["Data"] + "," + dataRowRX4["Signal"] + "," + dataRowRX4["Mark"] + "\r\n");
         }
@@ -1261,7 +1274,7 @@ const int inputCodePage = RS232_monitor.Properties.Settings.Default.CodePage;
             }
         }
 
-        private void serialPort1_ErrorReceived(object sender, System.IO.Ports.SerialErrorReceivedEventArgs e)
+        private void serialPort1_ErrorReceived(object sender, SerialErrorReceivedEventArgs e)
         {
             //MessageBox.Show("Port1 error: " + e.EventType);
             DataRow dataRowPIN1 = null;
@@ -1285,7 +1298,7 @@ const int inputCodePage = RS232_monitor.Properties.Settings.Default.CodePage;
             if (autosaveCSVToolStripMenuItem1.Checked == true) CSVcollectBuffer(dataRowPIN1["Date"] + "," + dataRowPIN1["Time"] + "," + dataRowPIN1["Milis"] + "," + dataRowPIN1["Port"] + "," + dataRowPIN1["Dir"] + "," + dataRowPIN1["Data"] + "," + dataRowPIN1["Signal"] + "," + dataRowPIN1["Mark"] + "\r\n");
         }
 
-        private void serialPort2_ErrorReceived(object sender, System.IO.Ports.SerialErrorReceivedEventArgs e)
+        private void serialPort2_ErrorReceived(object sender, SerialErrorReceivedEventArgs e)
         {
             //MessageBox.Show("Port2 error: " + e.EventType);
             DataRow dataRowPIN2 = null;
@@ -1511,7 +1524,7 @@ const int inputCodePage = RS232_monitor.Properties.Settings.Default.CodePage;
             }
             dataRowPIN1["Mark"] = checkBox_Mark.Checked;
             string outStr = "";
-            if (serialPort1.RtsEnable == true && o_rts1 == false && serialPort1.Handshake != Handshake.RequestToSend && serialPort1.Handshake != Handshake.RequestToSendXOnXOff)
+            if (serialPort1.RtsEnable == true && o_rts1 == false && serialPort1.Handshake != Handshake.Rts && serialPort1.Handshake != Handshake.XOn)
             {
                 o_rts1 = true;
                 outStr += "<" + portname1 + "_RTS^>";
@@ -1981,7 +1994,7 @@ const int inputCodePage = RS232_monitor.Properties.Settings.Default.CodePage;
             {
                 try
                 {
-                    File.WriteAllText(saveFileDialog.FileName, textBox_terminal1.Text);
+                    System.IO.File.WriteAllText(saveFileDialog.FileName, textBox_terminal1.Text);
                 }
                 catch (Exception ex)
                 {
@@ -2007,7 +2020,7 @@ const int inputCodePage = RS232_monitor.Properties.Settings.Default.CodePage;
                 }
                 try
                 {
-                    File.WriteAllText(saveFileDialog.FileName, output, Encoding.GetEncoding(RS232_monitor.Properties.Settings.Default.CodePage));
+                    System.IO.File.WriteAllText(saveFileDialog.FileName, output, Encoding.GetEncoding(RS232_monitor_extlib.Properties.Settings.Default.CodePage));
                 }
                 catch (Exception ex)
                 {
@@ -2046,37 +2059,37 @@ const int inputCodePage = RS232_monitor.Properties.Settings.Default.CodePage;
 
         private void saveParametersToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            RS232_monitor.Properties.Settings.Default.DefaultCommand = textBox_command.Text;
-            RS232_monitor.Properties.Settings.Default.DefaultCommandHex = checkBox_commandhex.Checked;
-            RS232_monitor.Properties.Settings.Default.DefaultParameter = textBox_params.Text;
-            RS232_monitor.Properties.Settings.Default.DefaultParamHex = checkBox_paramhex.Checked;
-            RS232_monitor.Properties.Settings.Default.addCR = checkBox_cr.Checked;
-            RS232_monitor.Properties.Settings.Default.addLF = checkBox_lf.Checked;
-            RS232_monitor.Properties.Settings.Default.addSuff = checkBox_suff.Checked;
-            RS232_monitor.Properties.Settings.Default.SuffText = textBox_suff.Text;
-            RS232_monitor.Properties.Settings.Default.DefaultSuffHex = checkBox_suffhex.Checked;
-            RS232_monitor.Properties.Settings.Default.LogSignal = checkBox_insPin.Checked;
-            RS232_monitor.Properties.Settings.Default.LogTime = checkBox_insTime.Checked;
-            RS232_monitor.Properties.Settings.Default.LogDir = checkBox_insDir.Checked;
-            RS232_monitor.Properties.Settings.Default.LogPortName = checkBox_portName.Checked;
-            RS232_monitor.Properties.Settings.Default.HexPort1 = checkBox_displayPort1hex.Checked;
-            RS232_monitor.Properties.Settings.Default.HexPort2 = checkBox_displayPort2hex.Checked;
-            RS232_monitor.Properties.Settings.Default.HexPort3 = checkBox_displayPort3hex.Checked;
-            RS232_monitor.Properties.Settings.Default.HexPort4 = checkBox_displayPort4hex.Checked;
-            RS232_monitor.Properties.Settings.Default.Port1Name = textBox_port1Name.Text;
-            RS232_monitor.Properties.Settings.Default.Port2Name = textBox_port2Name.Text;
-            RS232_monitor.Properties.Settings.Default.Port3Name = textBox_port3Name.Text;
-            RS232_monitor.Properties.Settings.Default.Port4Name = textBox_port4Name.Text;
-            RS232_monitor.Properties.Settings.Default.LogGrid = logToGridToolStripMenuItem.Checked;
-            RS232_monitor.Properties.Settings.Default.LogText = logToTextToolStripMenuItem.Checked;
-            RS232_monitor.Properties.Settings.Default.AutoScroll = autoscrollToolStripMenuItem.Checked;
-            RS232_monitor.Properties.Settings.Default.LineWrap = lineWrapToolStripMenuItem.Checked;
-            RS232_monitor.Properties.Settings.Default.AutoLogTXT = autosaveTXTToolStripMenuItem1.Checked;
-            RS232_monitor.Properties.Settings.Default.TXTlogFile = terminaltxtToolStripMenuItem1.Text;
-            RS232_monitor.Properties.Settings.Default.AutoLogCSV = autosaveCSVToolStripMenuItem1.Checked;
-            RS232_monitor.Properties.Settings.Default.CSVlogFile = terminalcsvToolStripMenuItem1.Text;
-            RS232_monitor.Properties.Settings.Default.LineBreakTimeout = limitTick / 10000;
-            RS232_monitor.Properties.Settings.Default.Save();
+            RS232_monitor_extlib.Properties.Settings.Default.DefaultCommand = textBox_command.Text;
+            RS232_monitor_extlib.Properties.Settings.Default.DefaultCommandHex = checkBox_commandhex.Checked;
+            RS232_monitor_extlib.Properties.Settings.Default.DefaultParameter = textBox_params.Text;
+            RS232_monitor_extlib.Properties.Settings.Default.DefaultParamHex = checkBox_paramhex.Checked;
+            RS232_monitor_extlib.Properties.Settings.Default.addCR = checkBox_cr.Checked;
+            RS232_monitor_extlib.Properties.Settings.Default.addLF = checkBox_lf.Checked;
+            RS232_monitor_extlib.Properties.Settings.Default.addSuff = checkBox_suff.Checked;
+            RS232_monitor_extlib.Properties.Settings.Default.SuffText = textBox_suff.Text;
+            RS232_monitor_extlib.Properties.Settings.Default.DefaultSuffHex = checkBox_suffhex.Checked;
+            RS232_monitor_extlib.Properties.Settings.Default.LogSignal = checkBox_insPin.Checked;
+            RS232_monitor_extlib.Properties.Settings.Default.LogTime = checkBox_insTime.Checked;
+            RS232_monitor_extlib.Properties.Settings.Default.LogDir = checkBox_insDir.Checked;
+            RS232_monitor_extlib.Properties.Settings.Default.LogPortName = checkBox_portName.Checked;
+            RS232_monitor_extlib.Properties.Settings.Default.HexPort1 = checkBox_displayPort1hex.Checked;
+            RS232_monitor_extlib.Properties.Settings.Default.HexPort2 = checkBox_displayPort2hex.Checked;
+            RS232_monitor_extlib.Properties.Settings.Default.HexPort3 = checkBox_displayPort3hex.Checked;
+            RS232_monitor_extlib.Properties.Settings.Default.HexPort4 = checkBox_displayPort4hex.Checked;
+            RS232_monitor_extlib.Properties.Settings.Default.Port1Name = textBox_port1Name.Text;
+            RS232_monitor_extlib.Properties.Settings.Default.Port2Name = textBox_port2Name.Text;
+            RS232_monitor_extlib.Properties.Settings.Default.Port3Name = textBox_port3Name.Text;
+            RS232_monitor_extlib.Properties.Settings.Default.Port4Name = textBox_port4Name.Text;
+            RS232_monitor_extlib.Properties.Settings.Default.LogGrid = logToGridToolStripMenuItem.Checked;
+            RS232_monitor_extlib.Properties.Settings.Default.LogText = logToTextToolStripMenuItem.Checked;
+            RS232_monitor_extlib.Properties.Settings.Default.AutoScroll = autoscrollToolStripMenuItem.Checked;
+            RS232_monitor_extlib.Properties.Settings.Default.LineWrap = lineWrapToolStripMenuItem.Checked;
+            RS232_monitor_extlib.Properties.Settings.Default.AutoLogTXT = autosaveTXTToolStripMenuItem1.Checked;
+            RS232_monitor_extlib.Properties.Settings.Default.TXTlogFile = terminaltxtToolStripMenuItem1.Text;
+            RS232_monitor_extlib.Properties.Settings.Default.AutoLogCSV = autosaveCSVToolStripMenuItem1.Checked;
+            RS232_monitor_extlib.Properties.Settings.Default.CSVlogFile = terminalcsvToolStripMenuItem1.Text;
+            RS232_monitor_extlib.Properties.Settings.Default.LineBreakTimeout = limitTick / 10000;
+            RS232_monitor_extlib.Properties.Settings.Default.Save();
         }
 
         private void autosaveTXTToolStripMenuItem1_Click(object sender, EventArgs e)
@@ -2199,10 +2212,10 @@ const int inputCodePage = RS232_monitor.Properties.Settings.Default.CodePage;
 
             if (toolStripMenuItem_onlyData.Checked == false)
             {
-                this.serialPort1.ErrorReceived += new System.IO.Ports.SerialErrorReceivedEventHandler(this.serialPort1_ErrorReceived);
-                this.serialPort2.ErrorReceived += new System.IO.Ports.SerialErrorReceivedEventHandler(this.serialPort2_ErrorReceived);
-                this.serialPort3.ErrorReceived += new System.IO.Ports.SerialErrorReceivedEventHandler(this.serialPort3_ErrorReceived);
-                this.serialPort4.ErrorReceived += new System.IO.Ports.SerialErrorReceivedEventHandler(this.serialPort4_ErrorReceived);
+                this.serialPort1.ErrorReceived += this.serialPort1_ErrorReceived;
+                this.serialPort2.ErrorReceived += this.serialPort2_ErrorReceived;
+                this.serialPort3.ErrorReceived += this.serialPort3_ErrorReceived;
+                this.serialPort4.ErrorReceived += this.serialPort4_ErrorReceived;
                 checkBox_insPin.Checked = true;
             }
             else
@@ -2244,7 +2257,7 @@ const int inputCodePage = RS232_monitor.Properties.Settings.Default.CodePage;
             comboBox_portname4.Items.Add("-None-");
 
             //Add ports
-            foreach (string s in SerialPort.GetPortNames())
+            foreach (string s in SerialPortStream.GetPortNames())
             {
                 comboBox_portname1.Items.Add(s);
                 comboBox_portname2.Items.Add(s);
@@ -2510,7 +2523,7 @@ const int inputCodePage = RS232_monitor.Properties.Settings.Default.CodePage;
                     {
                         try
                         {
-                            File.AppendAllText(terminaltxtToolStripMenuItem1.Text, tmpBuffer, Encoding.GetEncoding(RS232_monitor.Properties.Settings.Default.CodePage));
+                            System.IO.File.AppendAllText(terminaltxtToolStripMenuItem1.Text, tmpBuffer, Encoding.GetEncoding(RS232_monitor_extlib.Properties.Settings.Default.CodePage));
                         }
                         catch (Exception ex)
                         {
@@ -2531,7 +2544,7 @@ const int inputCodePage = RS232_monitor.Properties.Settings.Default.CodePage;
 
                     try
                     {
-                        File.AppendAllText(terminalcsvToolStripMenuItem1.Text, tmpBuffer, Encoding.GetEncoding(RS232_monitor.Properties.Settings.Default.CodePage));
+                        System.IO.File.AppendAllText(terminalcsvToolStripMenuItem1.Text, tmpBuffer, Encoding.GetEncoding(RS232_monitor_extlib.Properties.Settings.Default.CodePage));
                     }
                     catch (Exception ex)
                     {

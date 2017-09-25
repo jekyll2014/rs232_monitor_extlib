@@ -1,4 +1,4 @@
-﻿namespace RS232_monitor.Properties {
+﻿namespace RS232_monitor_extlib.Properties {
     
     
     // Этот класс позволяет обрабатывать определенные события в классе параметров:

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 
-namespace RS232_monitor
+namespace RS232_monitor_extlib
 {
     static class Program
     {

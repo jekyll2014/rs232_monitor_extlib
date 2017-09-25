@@ -5,7 +5,7 @@ using System.IO;
 using System.IO.Ports;
 using System.Text;
 using System.Windows.Forms;
-namespace RS232_monitor
+namespace RS232_monitor_extlib
 {
     partial class FormMain
     {
@@ -22,6 +22,10 @@ namespace RS232_monitor
         {
             if (disposing && (components != null))
             {
+                serialPort1.Dispose();
+                serialPort2.Dispose();
+                serialPort3.Dispose();
+                serialPort4.Dispose();
                 components.Dispose();
             }
             base.Dispose(disposing);
@@ -35,7 +39,6 @@ namespace RS232_monitor
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.textBox_terminal1 = new System.Windows.Forms.TextBox();
             this.button_send = new System.Windows.Forms.Button();
             this.comboBox_portspeed1 = new System.Windows.Forms.ComboBox();
@@ -66,7 +69,6 @@ namespace RS232_monitor
             this.label13 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
-            this.serialPort2 = new System.IO.Ports.SerialPort(this.components);
             this.checkBox_sendPort1 = new System.Windows.Forms.CheckBox();
             this.checkBox_sendPort2 = new System.Windows.Forms.CheckBox();
             this.checkBox_cr = new System.Windows.Forms.CheckBox();
@@ -97,7 +99,6 @@ namespace RS232_monitor
             this.label8 = new System.Windows.Forms.Label();
             this.checkBox_RI1 = new System.Windows.Forms.CheckBox();
             this.checkBox_RI2 = new System.Windows.Forms.CheckBox();
-            this.serialPort1 = new System.IO.Ports.SerialPort(this.components);
             this.dataGridView = new System.Windows.Forms.DataGridView();
             this.checkBox_Mark = new System.Windows.Forms.CheckBox();
             this.tabControl1 = new System.Windows.Forms.TabControl();
@@ -180,8 +181,6 @@ namespace RS232_monitor
             this.checkBox_sendPort4 = new System.Windows.Forms.CheckBox();
             this.checkBox_displayPort3hex = new System.Windows.Forms.CheckBox();
             this.checkBox_displayPort4hex = new System.Windows.Forms.CheckBox();
-            this.serialPort3 = new System.IO.Ports.SerialPort(this.components);
-            this.serialPort4 = new System.IO.Ports.SerialPort(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -536,10 +535,6 @@ namespace RS232_monitor
             this.label15.Size = new System.Drawing.Size(48, 13);
             this.label15.TabIndex = 3;
             this.label15.Text = "Stop bits";
-            // 
-            // serialPort2
-            // 
-            this.serialPort2.ErrorReceived += new System.IO.Ports.SerialErrorReceivedEventHandler(this.serialPort2_ErrorReceived);
             // 
             // checkBox_sendPort1
             // 
@@ -907,10 +902,6 @@ namespace RS232_monitor
             this.checkBox_RI2.TabIndex = 30;
             this.checkBox_RI2.Text = "RI";
             this.checkBox_RI2.UseVisualStyleBackColor = true;
-            // 
-            // serialPort1
-            // 
-            this.serialPort1.ErrorReceived += new System.IO.Ports.SerialErrorReceivedEventHandler(this.serialPort1_ErrorReceived);
             // 
             // dataGridView
             // 
@@ -1883,14 +1874,6 @@ namespace RS232_monitor
             this.checkBox_displayPort4hex.TextAlign = System.Drawing.ContentAlignment.TopLeft;
             this.checkBox_displayPort4hex.UseVisualStyleBackColor = true;
             // 
-            // serialPort3
-            // 
-            this.serialPort3.ErrorReceived += new System.IO.Ports.SerialErrorReceivedEventHandler(this.serialPort3_ErrorReceived);
-            // 
-            // serialPort4
-            // 
-            this.serialPort4.ErrorReceived += new System.IO.Ports.SerialErrorReceivedEventHandler(this.serialPort4_ErrorReceived);
-            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -2000,7 +1983,6 @@ namespace RS232_monitor
         private System.Windows.Forms.Button button_send;
         private System.Windows.Forms.Button button_clear1;
         public System.Windows.Forms.TextBox textBox_terminal1;
-        public System.IO.Ports.SerialPort serialPort2;
         private System.Windows.Forms.CheckBox checkBox_CD1;
         private System.Windows.Forms.CheckBox checkBox_DSR1;
         private System.Windows.Forms.CheckBox checkBox_DTR1;
@@ -2022,7 +2004,6 @@ namespace RS232_monitor
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.CheckBox checkBox_RI1;
         private System.Windows.Forms.CheckBox checkBox_RI2;
-        public System.IO.Ports.SerialPort serialPort1;
         private System.Windows.Forms.CheckBox checkBox_Mark;
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPage2;
@@ -2103,8 +2084,6 @@ namespace RS232_monitor
         private CheckBox checkBox_sendPort4;
         private CheckBox checkBox_displayPort3hex;
         private CheckBox checkBox_displayPort4hex;
-        private SerialPort serialPort3;
-        private SerialPort serialPort4;
         private ToolStripMenuItem logToTextToolStripMenuItem;
         private ToolStripMenuItem toolStripMenuItem_onlyData;
     }
