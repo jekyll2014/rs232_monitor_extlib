@@ -1202,7 +1202,7 @@ namespace RS232_monitor_extlib
             this.LineBreakToolStripTextBox1.Name = "LineBreakToolStripTextBox1";
             this.LineBreakToolStripTextBox1.Size = new System.Drawing.Size(100, 23);
             this.LineBreakToolStripTextBox1.Text = "1000";
-            this.LineBreakToolStripTextBox1.TextChanged += new System.EventHandler(this.toolStripTextBox1_TextChanged);
+            this.LineBreakToolStripTextBox1.Leave += new System.EventHandler(this.LineBreakToolStripTextBox1_Leave);
             // 
             // saveParametersToolStripMenuItem1
             // 
@@ -1878,9 +1878,11 @@ namespace RS232_monitor_extlib
             // 
             // toolStripTextBox_CSVLinesNumber
             // 
+            this.toolStripTextBox_CSVLinesNumber.MaxLength = 5;
             this.toolStripTextBox_CSVLinesNumber.Name = "toolStripTextBox_CSVLinesNumber";
             this.toolStripTextBox_CSVLinesNumber.Size = new System.Drawing.Size(100, 23);
             this.toolStripTextBox_CSVLinesNumber.Text = "1024";
+            this.toolStripTextBox_CSVLinesNumber.Leave += new System.EventHandler(this.toolStripTextBox_CSVLinesNumber_Leave);
             // 
             // FormMain
             // 
