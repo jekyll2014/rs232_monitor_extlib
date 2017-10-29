@@ -4,11 +4,11 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 //using System.IO;
 //using System.IO;
 //using System.IO.Ports;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace RS232_monitor_extlib
@@ -32,6 +32,9 @@ const int inputCodePage = RS232_monitor.Properties.Settings.Default.CodePage;
         string portname1, portname2, portname3, portname4;
         int txtOutState = 0;
         long oldTicks = DateTime.Now.Ticks, limitTick = 0;
+        int CSVLineNumberLimit = 0;
+        string CSVFileName = "";
+        int CSVLineCount = 0;
 
         public const byte Port1DataIn = 11;
         public const byte Port1DataOut = 12;
@@ -162,9 +165,9 @@ const int inputCodePage = RS232_monitor.Properties.Settings.Default.CodePage;
             autosaveTXTToolStripMenuItem1.Checked = RS232_monitor_extlib.Properties.Settings.Default.AutoLogTXT;
             terminaltxtToolStripMenuItem1.Text = RS232_monitor_extlib.Properties.Settings.Default.TXTlogFile;
             autosaveCSVToolStripMenuItem1.Checked = RS232_monitor_extlib.Properties.Settings.Default.AutoLogCSV;
-            terminalcsvToolStripMenuItem1.Text = RS232_monitor_extlib.Properties.Settings.Default.CSVlogFile;
             LineBreakToolStripTextBox1.Text = RS232_monitor_extlib.Properties.Settings.Default.LineBreakTimeout.ToString();
             limitTick = RS232_monitor_extlib.Properties.Settings.Default.LineBreakTimeout * 10000;
+            toolStripTextBox_CSVLinesNumber.Text = RS232_monitor_extlib.Properties.Settings.Default.CSVLineNumber;
 
             if (autosaveTXTToolStripMenuItem1.Checked == true) terminaltxtToolStripMenuItem1.Enabled = true;
             else terminaltxtToolStripMenuItem1.Enabled = false;
@@ -2087,7 +2090,6 @@ const int inputCodePage = RS232_monitor.Properties.Settings.Default.CodePage;
             RS232_monitor_extlib.Properties.Settings.Default.AutoLogTXT = autosaveTXTToolStripMenuItem1.Checked;
             RS232_monitor_extlib.Properties.Settings.Default.TXTlogFile = terminaltxtToolStripMenuItem1.Text;
             RS232_monitor_extlib.Properties.Settings.Default.AutoLogCSV = autosaveCSVToolStripMenuItem1.Checked;
-            RS232_monitor_extlib.Properties.Settings.Default.CSVlogFile = terminalcsvToolStripMenuItem1.Text;
             RS232_monitor_extlib.Properties.Settings.Default.LineBreakTimeout = limitTick / 10000;
             RS232_monitor_extlib.Properties.Settings.Default.Save();
         }
@@ -2108,16 +2110,7 @@ const int inputCodePage = RS232_monitor.Properties.Settings.Default.CodePage;
 
         private void autosaveCSVToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            if (autosaveCSVToolStripMenuItem1.Checked == true)
-            {
-                autosaveCSVToolStripMenuItem1.Checked = false;
-                terminalcsvToolStripMenuItem1.Enabled = true;
-            }
-            else
-            {
-                autosaveCSVToolStripMenuItem1.Checked = true;
-                terminalcsvToolStripMenuItem1.Enabled = false;
-            }
+            autosaveCSVToolStripMenuItem1.Checked = !autosaveCSVToolStripMenuItem1.Checked;
         }
 
         private void lineWrapToolStripMenuItem_Click(object sender, EventArgs e)
@@ -2541,10 +2534,11 @@ const int inputCodePage = RS232_monitor.Properties.Settings.Default.CodePage;
             {
                 lock (threadLock)
                 {
-
+                    if (CSVLineCount >= CSVLineNumberLimit) CSVFileName = DateTime.Today.ToShortDateString() + DateTime.Now.ToLongTimeString() + DateTime.Now.Millisecond.ToString("D3") + ".csv";
                     try
                     {
-                        System.IO.File.AppendAllText(terminalcsvToolStripMenuItem1.Text, tmpBuffer, Encoding.GetEncoding(RS232_monitor_extlib.Properties.Settings.Default.CodePage));
+                        File.AppendAllText(CSVFileName, tmpBuffer, Encoding.GetEncoding(RS232_monitor_extlib.Properties.Settings.Default.CodePage));
+                        CSVLineCount++;
                     }
                     catch (Exception ex)
                     {
