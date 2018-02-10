@@ -39,7 +39,7 @@ namespace RS232_monitor_extlib
         /// </summary>
         private void InitializeComponent()
         {
-            this.textBox_terminal1 = new System.Windows.Forms.TextBox();
+            this.textBox_terminal = new System.Windows.Forms.TextBox();
             this.button_send = new System.Windows.Forms.Button();
             this.comboBox_portspeed1 = new System.Windows.Forms.ComboBox();
             this.comboBox_handshake1 = new System.Windows.Forms.ComboBox();
@@ -128,6 +128,8 @@ namespace RS232_monitor_extlib
             this.autosaveCSVToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.LineBreakToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.LineBreakToolStripTextBox1 = new System.Windows.Forms.ToolStripTextBox();
+            this.limitCSVFileLinesNumberToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripTextBox_CSVLinesNumber = new System.Windows.Forms.ToolStripTextBox();
             this.saveParametersToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.checkBox_suffhex = new System.Windows.Forms.CheckBox();
@@ -180,8 +182,6 @@ namespace RS232_monitor_extlib
             this.checkBox_sendPort4 = new System.Windows.Forms.CheckBox();
             this.checkBox_displayPort3hex = new System.Windows.Forms.CheckBox();
             this.checkBox_displayPort4hex = new System.Windows.Forms.CheckBox();
-            this.limitCSVFileLinesNumberToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripTextBox_CSVLinesNumber = new System.Windows.Forms.ToolStripTextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -194,20 +194,20 @@ namespace RS232_monitor_extlib
             this.groupBox5.SuspendLayout();
             this.SuspendLayout();
             // 
-            // textBox_terminal1
+            // textBox_terminal
             // 
-            this.textBox_terminal1.Cursor = System.Windows.Forms.Cursors.Arrow;
-            this.textBox_terminal1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox_terminal1.Font = new System.Drawing.Font("Courier New", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBox_terminal1.HideSelection = false;
-            this.textBox_terminal1.Location = new System.Drawing.Point(3, 3);
-            this.textBox_terminal1.MaxLength = 20480000;
-            this.textBox_terminal1.Multiline = true;
-            this.textBox_terminal1.Name = "textBox_terminal1";
-            this.textBox_terminal1.ReadOnly = true;
-            this.textBox_terminal1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBox_terminal1.Size = new System.Drawing.Size(686, 108);
-            this.textBox_terminal1.TabIndex = 50;
+            this.textBox_terminal.Cursor = System.Windows.Forms.Cursors.Arrow;
+            this.textBox_terminal.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.textBox_terminal.Font = new System.Drawing.Font("Courier New", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.textBox_terminal.HideSelection = false;
+            this.textBox_terminal.Location = new System.Drawing.Point(3, 3);
+            this.textBox_terminal.MaxLength = 20480000;
+            this.textBox_terminal.Multiline = true;
+            this.textBox_terminal.Name = "textBox_terminal";
+            this.textBox_terminal.ReadOnly = true;
+            this.textBox_terminal.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.textBox_terminal.Size = new System.Drawing.Size(686, 108);
+            this.textBox_terminal.TabIndex = 50;
             // 
             // button_send
             // 
@@ -957,7 +957,7 @@ namespace RS232_monitor_extlib
             // tabPage1
             // 
             this.tabPage1.AutoScroll = true;
-            this.tabPage1.Controls.Add(this.textBox_terminal1);
+            this.tabPage1.Controls.Add(this.textBox_terminal);
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
@@ -1147,7 +1147,6 @@ namespace RS232_monitor_extlib
             // 
             this.autoscrollToolStripMenuItem.Checked = true;
             this.autoscrollToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.autoscrollToolStripMenuItem.Enabled = false;
             this.autoscrollToolStripMenuItem.Name = "autoscrollToolStripMenuItem";
             this.autoscrollToolStripMenuItem.Size = new System.Drawing.Size(216, 22);
             this.autoscrollToolStripMenuItem.Text = "Autoscroll";
@@ -1203,6 +1202,22 @@ namespace RS232_monitor_extlib
             this.LineBreakToolStripTextBox1.Size = new System.Drawing.Size(100, 23);
             this.LineBreakToolStripTextBox1.Text = "1000";
             this.LineBreakToolStripTextBox1.Leave += new System.EventHandler(this.LineBreakToolStripTextBox1_Leave);
+            // 
+            // limitCSVFileLinesNumberToolStripMenuItem
+            // 
+            this.limitCSVFileLinesNumberToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripTextBox_CSVLinesNumber});
+            this.limitCSVFileLinesNumberToolStripMenuItem.Name = "limitCSVFileLinesNumberToolStripMenuItem";
+            this.limitCSVFileLinesNumberToolStripMenuItem.Size = new System.Drawing.Size(216, 22);
+            this.limitCSVFileLinesNumberToolStripMenuItem.Text = "Limit CSV file lines number";
+            // 
+            // toolStripTextBox_CSVLinesNumber
+            // 
+            this.toolStripTextBox_CSVLinesNumber.MaxLength = 5;
+            this.toolStripTextBox_CSVLinesNumber.Name = "toolStripTextBox_CSVLinesNumber";
+            this.toolStripTextBox_CSVLinesNumber.Size = new System.Drawing.Size(100, 23);
+            this.toolStripTextBox_CSVLinesNumber.Text = "1024";
+            this.toolStripTextBox_CSVLinesNumber.Leave += new System.EventHandler(this.toolStripTextBox_CSVLinesNumber_Leave);
             // 
             // saveParametersToolStripMenuItem1
             // 
@@ -1868,22 +1883,6 @@ namespace RS232_monitor_extlib
             this.checkBox_displayPort4hex.TextAlign = System.Drawing.ContentAlignment.TopLeft;
             this.checkBox_displayPort4hex.UseVisualStyleBackColor = true;
             // 
-            // limitCSVFileLinesNumberToolStripMenuItem
-            // 
-            this.limitCSVFileLinesNumberToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripTextBox_CSVLinesNumber});
-            this.limitCSVFileLinesNumberToolStripMenuItem.Name = "limitCSVFileLinesNumberToolStripMenuItem";
-            this.limitCSVFileLinesNumberToolStripMenuItem.Size = new System.Drawing.Size(216, 22);
-            this.limitCSVFileLinesNumberToolStripMenuItem.Text = "Limit CSV file lines number";
-            // 
-            // toolStripTextBox_CSVLinesNumber
-            // 
-            this.toolStripTextBox_CSVLinesNumber.MaxLength = 5;
-            this.toolStripTextBox_CSVLinesNumber.Name = "toolStripTextBox_CSVLinesNumber";
-            this.toolStripTextBox_CSVLinesNumber.Size = new System.Drawing.Size(100, 23);
-            this.toolStripTextBox_CSVLinesNumber.Text = "1024";
-            this.toolStripTextBox_CSVLinesNumber.Leave += new System.EventHandler(this.toolStripTextBox_CSVLinesNumber_Leave);
-            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1992,7 +1991,7 @@ namespace RS232_monitor_extlib
         private System.Windows.Forms.CheckBox checkBox_paramhex;
         private System.Windows.Forms.Button button_send;
         private System.Windows.Forms.Button button_clear1;
-        public System.Windows.Forms.TextBox textBox_terminal1;
+        public System.Windows.Forms.TextBox textBox_terminal;
         private System.Windows.Forms.CheckBox checkBox_CD1;
         private System.Windows.Forms.CheckBox checkBox_DSR1;
         private System.Windows.Forms.CheckBox checkBox_DTR1;
