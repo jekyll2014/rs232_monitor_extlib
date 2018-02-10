@@ -28,7 +28,7 @@ const int inputCodePage = RS232_monitor.Properties.Settings.Default.CodePage;
         bool o_cd2, o_dsr2, o_dtr2, o_rts2, o_cts2;
         bool o_cd3, o_dsr3, o_dtr3, o_rts3, o_cts3;
         bool o_cd4, o_dsr4, o_dtr4, o_rts4, o_cts4;
-        public System.Data.DataTable CSVdataTable = new System.Data.DataTable("Logs");
+        public DataTable CSVdataTable = new DataTable("Logs");
         string portname1, portname2, portname3, portname4;
         int txtOutState = 0;
         long oldTicks = DateTime.Now.Ticks, limitTick = 0;
@@ -1914,19 +1914,19 @@ const int inputCodePage = RS232_monitor.Properties.Settings.Default.CodePage;
 
         private void textBox_command_Leave(object sender, EventArgs e)
         {
-            if (checkBox_commandhex.Checked == true) textBox_command.Text = Accessory.checkHexString(textBox_command.Text);
+            if (checkBox_commandhex.Checked == true) textBox_command.Text = Accessory.CheckHexString(textBox_command.Text);
             SendStringCollect();
         }
 
         private void textBox_params_Leave(object sender, EventArgs e)
         {
-            if (checkBox_paramhex.Checked == true) textBox_params.Text = Accessory.checkHexString(textBox_params.Text);
+            if (checkBox_paramhex.Checked == true) textBox_params.Text = Accessory.CheckHexString(textBox_params.Text);
             SendStringCollect();
         }
 
         private void textBox_suff_Leave(object sender, EventArgs e)
         {
-            if (checkBox_suffhex.Checked == true) textBox_suff.Text = Accessory.checkHexString(textBox_suff.Text);
+            if (checkBox_suffhex.Checked == true) textBox_suff.Text = Accessory.CheckHexString(textBox_suff.Text);
             SendStringCollect();
         }
 
@@ -2389,7 +2389,7 @@ const int inputCodePage = RS232_monitor.Properties.Settings.Default.CodePage;
                 if (checkBox_suffhex.Checked == true) tmpStr += " " + textBox_suff.Text.Trim();
                 else tmpStr += " " + Accessory.ConvertStringToHex(textBox_suff.Text).Trim();
             }
-            textBox_senddata.Text = Accessory.checkHexString(tmpStr);
+            textBox_senddata.Text = Accessory.CheckHexString(tmpStr);
         }
 
         private object threadLock = new object();
@@ -2552,7 +2552,8 @@ const int inputCodePage = RS232_monitor.Properties.Settings.Default.CodePage;
                         File.AppendAllText(CSVFileName, tmpBuffer, Encoding.GetEncoding(RS232_monitor_extlib.Properties.Settings.Default.CodePage));
                         CSVLineCount++;
                     }
-                    catch (Exception ex)
+                    catch
+                    //catch(Exception ex)
                     {
                         //MessageBox.Show("\r\nError opening file " + terminalcsvToolStripMenuItem1.Text + ": " + ex.Message);
                     }
