@@ -5,9 +5,6 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.IO;
-//using System.IO;
-//using System.IO;
-//using System.IO.Ports;
 using System.Text;
 using System.Windows.Forms;
 
@@ -180,10 +177,10 @@ const int inputCodePage = RS232_monitor.Properties.Settings.Default.CodePage;
             serialPort3.Encoding = Encoding.GetEncoding(RS232_monitor_extlib.Properties.Settings.Default.CodePage);
             serialPort4.Encoding = Encoding.GetEncoding(RS232_monitor_extlib.Properties.Settings.Default.CodePage);
 
-            this.serialPort1.ErrorReceived += this.serialPort1_ErrorReceived;
-            this.serialPort2.ErrorReceived += this.serialPort2_ErrorReceived;
-            this.serialPort3.ErrorReceived += this.serialPort3_ErrorReceived;
-            this.serialPort4.ErrorReceived += this.serialPort4_ErrorReceived;
+            serialPort1.ErrorReceived += serialPort1_ErrorReceived;
+            serialPort2.ErrorReceived += serialPort2_ErrorReceived;
+            serialPort3.ErrorReceived += serialPort3_ErrorReceived;
+            serialPort4.ErrorReceived += serialPort4_ErrorReceived;
 
             SerialPopulate();
         }
@@ -277,8 +274,8 @@ const int inputCodePage = RS232_monitor.Properties.Settings.Default.CodePage;
 
                     return;
                 }
-                if (checkBox_insPin.Checked) serialPort1.PinChanged += this.serialPort1_PinChanged;
-                this.serialPort1.DataReceived += this.serialPort1_DataReceived;
+                if (checkBox_insPin.Checked) serialPort1.PinChanged += serialPort1_PinChanged;
+                serialPort1.DataReceived += serialPort1_DataReceived;
                 button_refresh.Enabled = false;
                 button_closeport.Enabled = true;
                 button_openport.Enabled = false;
@@ -378,8 +375,8 @@ const int inputCodePage = RS232_monitor.Properties.Settings.Default.CodePage;
                     comboBox_stopbits4.Enabled = true;
                     return;
                 }
-                if (checkBox_insPin.Checked) this.serialPort2.PinChanged += this.serialPort2_PinChanged;
-                this.serialPort2.DataReceived += this.serialPort2_DataReceived;
+                if (checkBox_insPin.Checked) serialPort2.PinChanged += serialPort2_PinChanged;
+                serialPort2.DataReceived += serialPort2_DataReceived;
                 button_refresh.Enabled = false;
                 button_closeport.Enabled = true;
                 button_openport.Enabled = false;
@@ -478,8 +475,8 @@ const int inputCodePage = RS232_monitor.Properties.Settings.Default.CodePage;
                     comboBox_stopbits4.Enabled = true;
                     return;
                 }
-                if (checkBox_insPin.Checked) this.serialPort3.PinChanged += this.serialPort3_PinChanged;
-                this.serialPort3.DataReceived += this.serialPort3_DataReceived;
+                if (checkBox_insPin.Checked) serialPort3.PinChanged += serialPort3_PinChanged;
+                serialPort3.DataReceived += serialPort3_DataReceived;
                 button_refresh.Enabled = false;
                 button_closeport.Enabled = true;
                 button_openport.Enabled = false;
@@ -578,8 +575,8 @@ const int inputCodePage = RS232_monitor.Properties.Settings.Default.CodePage;
                     comboBox_stopbits4.Enabled = true;
                     return;
                 }
-                if (checkBox_insPin.Checked) this.serialPort4.PinChanged += this.serialPort4_PinChanged;
-                this.serialPort4.DataReceived += this.serialPort4_DataReceived;
+                if (checkBox_insPin.Checked) serialPort4.PinChanged += serialPort4_PinChanged;
+                serialPort4.DataReceived += serialPort4_DataReceived;
                 button_refresh.Enabled = false;
                 button_closeport.Enabled = true;
                 button_openport.Enabled = false;
@@ -2119,7 +2116,7 @@ const int inputCodePage = RS232_monitor.Properties.Settings.Default.CodePage;
             {
                 logToTextToolStripMenuItem.Checked = false;
                 textBox_terminal.Enabled = false;
-                ((Control)this.tabPage2).Enabled = false;
+                ((Control)tabPage2).Enabled = false;
                 if (logToGridToolStripMenuItem.Checked == false)
                 {
                     tabControl1.Enabled = false;
@@ -2130,7 +2127,7 @@ const int inputCodePage = RS232_monitor.Properties.Settings.Default.CodePage;
             {
                 logToTextToolStripMenuItem.Checked = true;
                 textBox_terminal.Enabled = true;
-                ((Control)this.tabPage2).Enabled = true;
+                ((Control)tabPage2).Enabled = true;
                 tabControl1.Enabled = true;
                 tabControl1.Visible = true;
             }
@@ -2150,7 +2147,7 @@ const int inputCodePage = RS232_monitor.Properties.Settings.Default.CodePage;
             {
                 logToGridToolStripMenuItem.Checked = false;
                 dataGridView.Enabled = false;
-                ((Control)this.tabPage1).Enabled = false;
+                ((Control)tabPage1).Enabled = false;
                 if (logToTextToolStripMenuItem.Checked == false)
                 {
                     tabControl1.Enabled = false;
@@ -2161,7 +2158,7 @@ const int inputCodePage = RS232_monitor.Properties.Settings.Default.CodePage;
             {
                 logToGridToolStripMenuItem.Checked = true;
                 dataGridView.Enabled = true;
-                ((Control)this.tabPage1).Enabled = true;
+                ((Control)tabPage1).Enabled = true;
                 tabControl1.Enabled = true;
                 tabControl1.Visible = true;
             }
@@ -2186,18 +2183,18 @@ const int inputCodePage = RS232_monitor.Properties.Settings.Default.CodePage;
 
             if (toolStripMenuItem_onlyData.Checked == false)
             {
-                this.serialPort1.ErrorReceived += this.serialPort1_ErrorReceived;
-                this.serialPort2.ErrorReceived += this.serialPort2_ErrorReceived;
-                this.serialPort3.ErrorReceived += this.serialPort3_ErrorReceived;
-                this.serialPort4.ErrorReceived += this.serialPort4_ErrorReceived;
+                serialPort1.ErrorReceived += serialPort1_ErrorReceived;
+                serialPort2.ErrorReceived += serialPort2_ErrorReceived;
+                serialPort3.ErrorReceived += serialPort3_ErrorReceived;
+                serialPort4.ErrorReceived += serialPort4_ErrorReceived;
                 checkBox_insPin.Checked = true;
             }
             else
             {
-                this.serialPort1.ErrorReceived -= this.serialPort1_ErrorReceived;
-                this.serialPort2.ErrorReceived -= this.serialPort2_ErrorReceived;
-                this.serialPort3.ErrorReceived -= this.serialPort3_ErrorReceived;
-                this.serialPort4.ErrorReceived -= this.serialPort4_ErrorReceived;
+                serialPort1.ErrorReceived -= serialPort1_ErrorReceived;
+                serialPort2.ErrorReceived -= serialPort2_ErrorReceived;
+                serialPort3.ErrorReceived -= serialPort3_ErrorReceived;
+                serialPort4.ErrorReceived -= serialPort4_ErrorReceived;
                 checkBox_insPin.Checked = false;
             }
         }
@@ -2346,7 +2343,7 @@ const int inputCodePage = RS232_monitor.Properties.Settings.Default.CodePage;
             // InvokeRequired required compares the thread ID of the
             // calling thread to the thread ID of the creating thread.
             // If these threads are different, it returns true.
-            //if (this.textBox_terminal1.InvokeRequired)
+            //if (textBox_terminal1.InvokeRequired)
             if (textBox_terminal.InvokeRequired)
             {
                 SetTextCallback1 d = new SetTextCallback1(SetText);
@@ -2392,17 +2389,17 @@ const int inputCodePage = RS232_monitor.Properties.Settings.Default.CodePage;
         {
             if (checkBox_insPin.Checked == true)
             {
-                this.serialPort1.PinChanged += this.serialPort1_PinChanged;
-                this.serialPort2.PinChanged += this.serialPort2_PinChanged;
-                this.serialPort3.PinChanged += this.serialPort3_PinChanged;
-                this.serialPort4.PinChanged += this.serialPort4_PinChanged;
+                serialPort1.PinChanged += serialPort1_PinChanged;
+                serialPort2.PinChanged += serialPort2_PinChanged;
+                serialPort3.PinChanged += serialPort3_PinChanged;
+                serialPort4.PinChanged += serialPort4_PinChanged;
             }
             else
             {
-                this.serialPort1.PinChanged -= this.serialPort1_PinChanged;
-                this.serialPort2.PinChanged -= this.serialPort2_PinChanged;
-                this.serialPort3.PinChanged -= this.serialPort3_PinChanged;
-                this.serialPort4.PinChanged -= this.serialPort4_PinChanged;
+                serialPort1.PinChanged -= serialPort1_PinChanged;
+                serialPort2.PinChanged -= serialPort2_PinChanged;
+                serialPort3.PinChanged -= serialPort3_PinChanged;
+                serialPort4.PinChanged -= serialPort4_PinChanged;
             }
         }
 
