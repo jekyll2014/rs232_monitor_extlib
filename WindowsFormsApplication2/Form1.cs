@@ -32,6 +32,8 @@ const int inputCodePage = RS232_monitor.Properties.Settings.Default.CodePage;
         int CSVLineNumberLimit = 0;
         string CSVFileName = "";
         int CSVLineCount = 0;
+        int LogLinesLimit = 100;
+
 
         public const byte Port1DataIn = 11;
         public const byte Port1DataOut = 12;
@@ -167,6 +169,7 @@ const int inputCodePage = RS232_monitor.Properties.Settings.Default.CodePage;
             limitTick = RS232_monitor_extlib.Properties.Settings.Default.LineBreakTimeout * 10000;
             CSVLineNumberLimit = RS232_monitor_extlib.Properties.Settings.Default.CSVLineNumber;
             toolStripTextBox_CSVLinesNumber.Text = CSVLineNumberLimit.ToString();
+            LogLinesLimit = Properties.Settings.Default.LogLinesLimit;
 
             if (autosaveTXTToolStripMenuItem1.Checked == true) terminaltxtToolStripMenuItem1.Enabled = true;
             else terminaltxtToolStripMenuItem1.Enabled = false;
@@ -2353,6 +2356,16 @@ const int inputCodePage = RS232_monitor.Properties.Settings.Default.CodePage;
             {
                 int pos = textBox_terminal.SelectionStart;
                 textBox_terminal.AppendText(text);
+                if (textBox_terminal.Lines.Length > LogLinesLimit)
+                {
+                    StringBuilder tmp = new StringBuilder();
+                    for (int i = textBox_terminal.Lines.Length - LogLinesLimit; i < textBox_terminal.Lines.Length; i++)
+                    {
+                        tmp.Append(textBox_terminal.Lines[i]);
+                        tmp.Append("\r\n");
+                    }
+                    textBox_terminal.Text = tmp.ToString();
+                }
                 if (autoscrollToolStripMenuItem.Checked)
                 {
                     textBox_terminal.SelectionStart = textBox_terminal.Text.Length;
