@@ -218,7 +218,7 @@ namespace RS232_monitor_extlib
             this.button_send.TabIndex = 24;
             this.button_send.Text = "Send";
             this.button_send.UseVisualStyleBackColor = true;
-            this.button_send.Click += new System.EventHandler(this.button_send_Click);
+            this.button_send.Click += new System.EventHandler(this.Button_send_Click);
             // 
             // comboBox_portspeed1
             // 
@@ -295,9 +295,9 @@ namespace RS232_monitor_extlib
             this.textBox_params.Name = "textBox_params";
             this.textBox_params.Size = new System.Drawing.Size(383, 20);
             this.textBox_params.TabIndex = 17;
-            this.textBox_params.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_params_KeyPress);
-            this.textBox_params.KeyUp += new System.Windows.Forms.KeyEventHandler(this.textBox_command_KeyUp);
-            this.textBox_params.Leave += new System.EventHandler(this.textBox_params_Leave);
+            this.textBox_params.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TextBox_params_KeyPress);
+            this.textBox_params.KeyUp += new System.Windows.Forms.KeyEventHandler(this.TextBox_command_KeyUp);
+            this.textBox_params.Leave += new System.EventHandler(this.TextBox_params_Leave);
             // 
             // label2
             // 
@@ -362,7 +362,7 @@ namespace RS232_monitor_extlib
             this.button_openport.TabIndex = 14;
             this.button_openport.Text = "Open ports";
             this.button_openport.UseVisualStyleBackColor = true;
-            this.button_openport.Click += new System.EventHandler(this.button_openport_Click);
+            this.button_openport.Click += new System.EventHandler(this.Button_openport_Click);
             // 
             // button_closeport
             // 
@@ -374,7 +374,7 @@ namespace RS232_monitor_extlib
             this.button_closeport.TabIndex = 34;
             this.button_closeport.Text = "Close ports";
             this.button_closeport.UseVisualStyleBackColor = true;
-            this.button_closeport.Click += new System.EventHandler(this.button_closeport_Click);
+            this.button_closeport.Click += new System.EventHandler(this.Button_closeport_Click);
             // 
             // comboBox_portname1
             // 
@@ -386,7 +386,7 @@ namespace RS232_monitor_extlib
             this.comboBox_portname1.Size = new System.Drawing.Size(70, 21);
             this.comboBox_portname1.Sorted = true;
             this.comboBox_portname1.TabIndex = 0;
-            this.comboBox_portname1.SelectedIndexChanged += new System.EventHandler(this.comboBox_portname1_SelectedIndexChanged);
+            this.comboBox_portname1.SelectedIndexChanged += new System.EventHandler(this.ComboBox_portname1_SelectedIndexChanged);
             // 
             // textBox_command
             // 
@@ -397,9 +397,9 @@ namespace RS232_monitor_extlib
             this.textBox_command.Name = "textBox_command";
             this.textBox_command.Size = new System.Drawing.Size(383, 20);
             this.textBox_command.TabIndex = 15;
-            this.textBox_command.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_custom_command_KeyPress);
-            this.textBox_command.KeyUp += new System.Windows.Forms.KeyEventHandler(this.textBox_command_KeyUp);
-            this.textBox_command.Leave += new System.EventHandler(this.textBox_command_Leave);
+            this.textBox_command.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TextBox_custom_command_KeyPress);
+            this.textBox_command.KeyUp += new System.Windows.Forms.KeyEventHandler(this.TextBox_command_KeyUp);
+            this.textBox_command.Leave += new System.EventHandler(this.TextBox_command_Leave);
             // 
             // label_custom_command
             // 
@@ -419,7 +419,7 @@ namespace RS232_monitor_extlib
             this.comboBox_portname2.Size = new System.Drawing.Size(70, 21);
             this.comboBox_portname2.Sorted = true;
             this.comboBox_portname2.TabIndex = 7;
-            this.comboBox_portname2.SelectedIndexChanged += new System.EventHandler(this.comboBox_portname2_SelectedIndexChanged);
+            this.comboBox_portname2.SelectedIndexChanged += new System.EventHandler(this.ComboBox_portname2_SelectedIndexChanged);
             // 
             // comboBox_portspeed2
             // 
@@ -549,7 +549,7 @@ namespace RS232_monitor_extlib
             this.checkBox_sendPort1.TabIndex = 25;
             this.checkBox_sendPort1.Text = "Port1";
             this.checkBox_sendPort1.UseVisualStyleBackColor = true;
-            this.checkBox_sendPort1.CheckedChanged += new System.EventHandler(this.checkBox_send_CheckedChanged);
+            this.checkBox_sendPort1.CheckedChanged += new System.EventHandler(this.CheckBox_send_CheckedChanged);
             // 
             // checkBox_sendPort2
             // 
@@ -563,7 +563,7 @@ namespace RS232_monitor_extlib
             this.checkBox_sendPort2.TabIndex = 26;
             this.checkBox_sendPort2.Text = "Port2";
             this.checkBox_sendPort2.UseVisualStyleBackColor = true;
-            this.checkBox_sendPort2.CheckedChanged += new System.EventHandler(this.checkBox_send_CheckedChanged);
+            this.checkBox_sendPort2.CheckedChanged += new System.EventHandler(this.CheckBox_send_CheckedChanged);
             // 
             // checkBox_cr
             // 
@@ -575,7 +575,7 @@ namespace RS232_monitor_extlib
             this.checkBox_cr.TabIndex = 19;
             this.checkBox_cr.Text = "CR (0D);";
             this.checkBox_cr.UseVisualStyleBackColor = true;
-            this.checkBox_cr.CheckedChanged += new System.EventHandler(this.checkBox_cr_CheckedChanged);
+            this.checkBox_cr.CheckedChanged += new System.EventHandler(this.CheckBox_cr_CheckedChanged);
             // 
             // checkBox_lf
             // 
@@ -589,7 +589,7 @@ namespace RS232_monitor_extlib
             this.checkBox_lf.TabIndex = 20;
             this.checkBox_lf.Text = "LF (0A);";
             this.checkBox_lf.UseVisualStyleBackColor = true;
-            this.checkBox_lf.CheckedChanged += new System.EventHandler(this.checkBox_lf_CheckedChanged);
+            this.checkBox_lf.CheckedChanged += new System.EventHandler(this.CheckBox_lf_CheckedChanged);
             // 
             // checkBox_suff
             // 
@@ -600,7 +600,7 @@ namespace RS232_monitor_extlib
             this.checkBox_suff.Size = new System.Drawing.Size(15, 14);
             this.checkBox_suff.TabIndex = 21;
             this.checkBox_suff.UseVisualStyleBackColor = true;
-            this.checkBox_suff.CheckedChanged += new System.EventHandler(this.checkBox_suff_CheckedChanged);
+            this.checkBox_suff.CheckedChanged += new System.EventHandler(this.CheckBox_suff_CheckedChanged);
             // 
             // textBox_senddata
             // 
@@ -624,7 +624,7 @@ namespace RS232_monitor_extlib
             this.checkBox_commandhex.TabIndex = 16;
             this.checkBox_commandhex.Text = "hex";
             this.checkBox_commandhex.UseVisualStyleBackColor = true;
-            this.checkBox_commandhex.CheckedChanged += new System.EventHandler(this.checkBox_commandhex_CheckedChanged);
+            this.checkBox_commandhex.CheckedChanged += new System.EventHandler(this.CheckBox_commandhex_CheckedChanged);
             // 
             // checkBox_paramhex
             // 
@@ -636,7 +636,7 @@ namespace RS232_monitor_extlib
             this.checkBox_paramhex.TabIndex = 18;
             this.checkBox_paramhex.Text = "hex";
             this.checkBox_paramhex.UseVisualStyleBackColor = true;
-            this.checkBox_paramhex.CheckedChanged += new System.EventHandler(this.checkBox_paramhex_CheckedChanged);
+            this.checkBox_paramhex.CheckedChanged += new System.EventHandler(this.CheckBox_paramhex_CheckedChanged);
             // 
             // button_clear1
             // 
@@ -647,7 +647,7 @@ namespace RS232_monitor_extlib
             this.button_clear1.TabIndex = 30;
             this.button_clear1.Text = "Clear";
             this.button_clear1.UseVisualStyleBackColor = true;
-            this.button_clear1.Click += new System.EventHandler(this.button_clear1_Click);
+            this.button_clear1.Click += new System.EventHandler(this.Button_clear1_Click);
             // 
             // checkBox_CD1
             // 
@@ -683,7 +683,7 @@ namespace RS232_monitor_extlib
             this.checkBox_DTR1.TabIndex = 19;
             this.checkBox_DTR1.Text = "DTR";
             this.checkBox_DTR1.UseVisualStyleBackColor = true;
-            this.checkBox_DTR1.CheckedChanged += new System.EventHandler(this.checkBox_DTR1_CheckedChanged);
+            this.checkBox_DTR1.CheckedChanged += new System.EventHandler(this.CheckBox_DTR1_CheckedChanged);
             // 
             // checkBox_RTS1
             // 
@@ -696,7 +696,7 @@ namespace RS232_monitor_extlib
             this.checkBox_RTS1.TabIndex = 20;
             this.checkBox_RTS1.Text = "RTS";
             this.checkBox_RTS1.UseVisualStyleBackColor = true;
-            this.checkBox_RTS1.CheckedChanged += new System.EventHandler(this.checkBox_RTS1_CheckedChanged);
+            this.checkBox_RTS1.CheckedChanged += new System.EventHandler(this.CheckBox_RTS1_CheckedChanged);
             // 
             // checkBox_CTS1
             // 
@@ -745,7 +745,7 @@ namespace RS232_monitor_extlib
             this.checkBox_DTR2.TabIndex = 27;
             this.checkBox_DTR2.Text = "DTR";
             this.checkBox_DTR2.UseVisualStyleBackColor = true;
-            this.checkBox_DTR2.CheckedChanged += new System.EventHandler(this.checkBox_DTR2_CheckedChanged);
+            this.checkBox_DTR2.CheckedChanged += new System.EventHandler(this.CheckBox_DTR2_CheckedChanged);
             // 
             // checkBox_RTS2
             // 
@@ -758,7 +758,7 @@ namespace RS232_monitor_extlib
             this.checkBox_RTS2.TabIndex = 28;
             this.checkBox_RTS2.Text = "RTS";
             this.checkBox_RTS2.UseVisualStyleBackColor = true;
-            this.checkBox_RTS2.CheckedChanged += new System.EventHandler(this.checkBox_RTS2_CheckedChanged);
+            this.checkBox_RTS2.CheckedChanged += new System.EventHandler(this.CheckBox_RTS2_CheckedChanged);
             // 
             // checkBox_CTS2
             // 
@@ -784,7 +784,7 @@ namespace RS232_monitor_extlib
             this.checkBox_insPin.TabIndex = 0;
             this.checkBox_insPin.Text = "signal status";
             this.checkBox_insPin.UseVisualStyleBackColor = true;
-            this.checkBox_insPin.CheckedChanged += new System.EventHandler(this.checkBox_insPin_CheckedChanged);
+            this.checkBox_insPin.CheckedChanged += new System.EventHandler(this.CheckBox_insPin_CheckedChanged);
             // 
             // checkBox_insTime
             // 
@@ -818,7 +818,7 @@ namespace RS232_monitor_extlib
             this.saveFileDialog.FileName = "terminal.txt";
             this.saveFileDialog.Filter = "Text files|*.txt|All files|*.*";
             this.saveFileDialog.RestoreDirectory = true;
-            this.saveFileDialog.FileOk += new System.ComponentModel.CancelEventHandler(this.saveFileDialog1_FileOk);
+            this.saveFileDialog.FileOk += new System.ComponentModel.CancelEventHandler(this.SaveFileDialog1_FileOk);
             // 
             // textBox_suff
             // 
@@ -830,8 +830,8 @@ namespace RS232_monitor_extlib
             this.textBox_suff.Name = "textBox_suff";
             this.textBox_suff.Size = new System.Drawing.Size(220, 20);
             this.textBox_suff.TabIndex = 22;
-            this.textBox_suff.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_suff_KeyPress);
-            this.textBox_suff.Leave += new System.EventHandler(this.textBox_suff_Leave);
+            this.textBox_suff.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TextBox_suff_KeyPress);
+            this.textBox_suff.Leave += new System.EventHandler(this.TextBox_suff_Leave);
             // 
             // checkBox_insDir
             // 
@@ -938,7 +938,7 @@ namespace RS232_monitor_extlib
             this.checkBox_Mark.Text = "Mark";
             this.checkBox_Mark.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.checkBox_Mark.UseVisualStyleBackColor = true;
-            this.checkBox_Mark.CheckedChanged += new System.EventHandler(this.checkBox_Mark_CheckedChanged);
+            this.checkBox_Mark.CheckedChanged += new System.EventHandler(this.CheckBox_Mark_CheckedChanged);
             // 
             // tabControl1
             // 
@@ -952,7 +952,7 @@ namespace RS232_monitor_extlib
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(700, 140);
             this.tabControl1.TabIndex = 32;
-            this.tabControl1.Selecting += new System.Windows.Forms.TabControlCancelEventHandler(this.tabControl1_Selecting);
+            this.tabControl1.Selecting += new System.Windows.Forms.TabControlCancelEventHandler(this.TabControl1_Selecting);
             // 
             // tabPage1
             // 
@@ -990,7 +990,7 @@ namespace RS232_monitor_extlib
             this.checkBox_portName.TabIndex = 1;
             this.checkBox_portName.Text = "port name";
             this.checkBox_portName.UseVisualStyleBackColor = true;
-            this.checkBox_portName.CheckedChanged += new System.EventHandler(this.checkBox_portName_CheckedChanged);
+            this.checkBox_portName.CheckedChanged += new System.EventHandler(this.CheckBox_portName_CheckedChanged);
             // 
             // textBox_port1Name
             // 
@@ -1085,21 +1085,21 @@ namespace RS232_monitor_extlib
             this.saveTXTToolStripMenuItem.Name = "saveTXTToolStripMenuItem";
             this.saveTXTToolStripMenuItem.Size = new System.Drawing.Size(125, 22);
             this.saveTXTToolStripMenuItem.Text = "Save .TXT";
-            this.saveTXTToolStripMenuItem.Click += new System.EventHandler(this.saveTXTToolStripMenuItem_Click);
+            this.saveTXTToolStripMenuItem.Click += new System.EventHandler(this.SaveTXTToolStripMenuItem_Click);
             // 
             // saveCSVToolStripMenuItem
             // 
             this.saveCSVToolStripMenuItem.Name = "saveCSVToolStripMenuItem";
             this.saveCSVToolStripMenuItem.Size = new System.Drawing.Size(125, 22);
             this.saveCSVToolStripMenuItem.Text = "Save .CSV";
-            this.saveCSVToolStripMenuItem.Click += new System.EventHandler(this.saveCSVToolStripMenuItem_Click);
+            this.saveCSVToolStripMenuItem.Click += new System.EventHandler(this.SaveCSVToolStripMenuItem_Click);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
             this.exitToolStripMenuItem.Size = new System.Drawing.Size(125, 22);
             this.exitToolStripMenuItem.Text = "Exit";
-            this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
+            this.exitToolStripMenuItem.Click += new System.EventHandler(this.ExitToolStripMenuItem_Click);
             // 
             // settingsToolStripMenuItem
             // 
@@ -1125,7 +1125,7 @@ namespace RS232_monitor_extlib
             this.logToGridToolStripMenuItem.Name = "logToGridToolStripMenuItem";
             this.logToGridToolStripMenuItem.Size = new System.Drawing.Size(216, 22);
             this.logToGridToolStripMenuItem.Text = "Log to table";
-            this.logToGridToolStripMenuItem.Click += new System.EventHandler(this.logToGridToolStripMenuItem_Click);
+            this.logToGridToolStripMenuItem.Click += new System.EventHandler(this.LogToGridToolStripMenuItem_Click);
             // 
             // logToTextToolStripMenuItem
             // 
@@ -1134,14 +1134,14 @@ namespace RS232_monitor_extlib
             this.logToTextToolStripMenuItem.Name = "logToTextToolStripMenuItem";
             this.logToTextToolStripMenuItem.Size = new System.Drawing.Size(216, 22);
             this.logToTextToolStripMenuItem.Text = "Log to text";
-            this.logToTextToolStripMenuItem.Click += new System.EventHandler(this.logToTextToolStripMenuItem_Click);
+            this.logToTextToolStripMenuItem.Click += new System.EventHandler(this.LogToTextToolStripMenuItem_Click);
             // 
             // toolStripMenuItem_onlyData
             // 
             this.toolStripMenuItem_onlyData.Name = "toolStripMenuItem_onlyData";
             this.toolStripMenuItem_onlyData.Size = new System.Drawing.Size(216, 22);
             this.toolStripMenuItem_onlyData.Text = "SimpleData logging";
-            this.toolStripMenuItem_onlyData.Click += new System.EventHandler(this.toolStripMenuItem_onlyData_Click);
+            this.toolStripMenuItem_onlyData.Click += new System.EventHandler(this.ToolStripMenuItem_onlyData_Click);
             // 
             // autoscrollToolStripMenuItem
             // 
@@ -1150,7 +1150,7 @@ namespace RS232_monitor_extlib
             this.autoscrollToolStripMenuItem.Name = "autoscrollToolStripMenuItem";
             this.autoscrollToolStripMenuItem.Size = new System.Drawing.Size(216, 22);
             this.autoscrollToolStripMenuItem.Text = "Autoscroll";
-            this.autoscrollToolStripMenuItem.Click += new System.EventHandler(this.autoscrollToolStripMenuItem_Click);
+            this.autoscrollToolStripMenuItem.Click += new System.EventHandler(this.AutoscrollToolStripMenuItem_Click);
             // 
             // lineWrapToolStripMenuItem
             // 
@@ -1159,7 +1159,7 @@ namespace RS232_monitor_extlib
             this.lineWrapToolStripMenuItem.Name = "lineWrapToolStripMenuItem";
             this.lineWrapToolStripMenuItem.Size = new System.Drawing.Size(216, 22);
             this.lineWrapToolStripMenuItem.Text = "Line wrap";
-            this.lineWrapToolStripMenuItem.Click += new System.EventHandler(this.lineWrapToolStripMenuItem_Click);
+            this.lineWrapToolStripMenuItem.Click += new System.EventHandler(this.LineWrapToolStripMenuItem_Click);
             // 
             // autosaveTXTToolStripMenuItem1
             // 
@@ -1170,7 +1170,7 @@ namespace RS232_monitor_extlib
             this.autosaveTXTToolStripMenuItem1.Name = "autosaveTXTToolStripMenuItem1";
             this.autosaveTXTToolStripMenuItem1.Size = new System.Drawing.Size(216, 22);
             this.autosaveTXTToolStripMenuItem1.Text = "Autosave .TXT";
-            this.autosaveTXTToolStripMenuItem1.Click += new System.EventHandler(this.autosaveTXTToolStripMenuItem1_Click);
+            this.autosaveTXTToolStripMenuItem1.Click += new System.EventHandler(this.AutosaveTXTToolStripMenuItem1_Click);
             // 
             // terminaltxtToolStripMenuItem1
             // 
@@ -1185,7 +1185,7 @@ namespace RS232_monitor_extlib
             this.autosaveCSVToolStripMenuItem1.Name = "autosaveCSVToolStripMenuItem1";
             this.autosaveCSVToolStripMenuItem1.Size = new System.Drawing.Size(216, 22);
             this.autosaveCSVToolStripMenuItem1.Text = "Autosave .CSV";
-            this.autosaveCSVToolStripMenuItem1.Click += new System.EventHandler(this.autosaveCSVToolStripMenuItem1_Click);
+            this.autosaveCSVToolStripMenuItem1.Click += new System.EventHandler(this.AutosaveCSVToolStripMenuItem1_Click);
             // 
             // LineBreakToolStripMenuItem1
             // 
@@ -1217,21 +1217,21 @@ namespace RS232_monitor_extlib
             this.toolStripTextBox_CSVLinesNumber.Name = "toolStripTextBox_CSVLinesNumber";
             this.toolStripTextBox_CSVLinesNumber.Size = new System.Drawing.Size(100, 23);
             this.toolStripTextBox_CSVLinesNumber.Text = "1024";
-            this.toolStripTextBox_CSVLinesNumber.Leave += new System.EventHandler(this.toolStripTextBox_CSVLinesNumber_Leave);
+            this.toolStripTextBox_CSVLinesNumber.Leave += new System.EventHandler(this.ToolStripTextBox_CSVLinesNumber_Leave);
             // 
             // saveParametersToolStripMenuItem1
             // 
             this.saveParametersToolStripMenuItem1.Name = "saveParametersToolStripMenuItem1";
             this.saveParametersToolStripMenuItem1.Size = new System.Drawing.Size(216, 22);
             this.saveParametersToolStripMenuItem1.Text = "Save parameters";
-            this.saveParametersToolStripMenuItem1.Click += new System.EventHandler(this.saveParametersToolStripMenuItem1_Click);
+            this.saveParametersToolStripMenuItem1.Click += new System.EventHandler(this.SaveParametersToolStripMenuItem1_Click);
             // 
             // aboutToolStripMenuItem
             // 
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
             this.aboutToolStripMenuItem.Size = new System.Drawing.Size(52, 20);
             this.aboutToolStripMenuItem.Text = "About";
-            this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
+            this.aboutToolStripMenuItem.Click += new System.EventHandler(this.AboutToolStripMenuItem_Click);
             // 
             // checkBox_suffhex
             // 
@@ -1243,7 +1243,7 @@ namespace RS232_monitor_extlib
             this.checkBox_suffhex.TabIndex = 23;
             this.checkBox_suffhex.Text = "hex";
             this.checkBox_suffhex.UseVisualStyleBackColor = true;
-            this.checkBox_suffhex.CheckedChanged += new System.EventHandler(this.checkBox_suffhex_CheckedChanged);
+            this.checkBox_suffhex.CheckedChanged += new System.EventHandler(this.CheckBox_suffhex_CheckedChanged);
             // 
             // button_refresh
             // 
@@ -1254,7 +1254,7 @@ namespace RS232_monitor_extlib
             this.button_refresh.TabIndex = 33;
             this.button_refresh.Text = "Refresh";
             this.button_refresh.UseVisualStyleBackColor = true;
-            this.button_refresh.Click += new System.EventHandler(this.button_Refresh_Click);
+            this.button_refresh.Click += new System.EventHandler(this.Button_Refresh_Click);
             // 
             // groupBox2
             // 
@@ -1367,7 +1367,7 @@ namespace RS232_monitor_extlib
             this.comboBox_portname3.Size = new System.Drawing.Size(70, 21);
             this.comboBox_portname3.Sorted = true;
             this.comboBox_portname3.TabIndex = 7;
-            this.comboBox_portname3.SelectedIndexChanged += new System.EventHandler(this.comboBox_portname3_SelectedIndexChanged);
+            this.comboBox_portname3.SelectedIndexChanged += new System.EventHandler(this.ComboBox_portname3_SelectedIndexChanged);
             // 
             // comboBox_portspeed3
             // 
@@ -1498,7 +1498,7 @@ namespace RS232_monitor_extlib
             this.checkBox_RTS3.TabIndex = 28;
             this.checkBox_RTS3.Text = "RTS";
             this.checkBox_RTS3.UseVisualStyleBackColor = true;
-            this.checkBox_RTS3.CheckedChanged += new System.EventHandler(this.checkBox_RTS3_CheckedChanged);
+            this.checkBox_RTS3.CheckedChanged += new System.EventHandler(this.CheckBox_RTS3_CheckedChanged);
             // 
             // label20
             // 
@@ -1541,7 +1541,7 @@ namespace RS232_monitor_extlib
             this.checkBox_DTR3.TabIndex = 27;
             this.checkBox_DTR3.Text = "DTR";
             this.checkBox_DTR3.UseVisualStyleBackColor = true;
-            this.checkBox_DTR3.CheckedChanged += new System.EventHandler(this.checkBox_DTR3_CheckedChanged);
+            this.checkBox_DTR3.CheckedChanged += new System.EventHandler(this.CheckBox_DTR3_CheckedChanged);
             // 
             // label22
             // 
@@ -1624,7 +1624,7 @@ namespace RS232_monitor_extlib
             this.comboBox_portname4.Size = new System.Drawing.Size(70, 21);
             this.comboBox_portname4.Sorted = true;
             this.comboBox_portname4.TabIndex = 7;
-            this.comboBox_portname4.SelectedIndexChanged += new System.EventHandler(this.comboBox_portname4_SelectedIndexChanged);
+            this.comboBox_portname4.SelectedIndexChanged += new System.EventHandler(this.ComboBox_portname4_SelectedIndexChanged);
             // 
             // comboBox_portspeed4
             // 
@@ -1755,7 +1755,7 @@ namespace RS232_monitor_extlib
             this.checkBox_RTS4.TabIndex = 28;
             this.checkBox_RTS4.Text = "RTS";
             this.checkBox_RTS4.UseVisualStyleBackColor = true;
-            this.checkBox_RTS4.CheckedChanged += new System.EventHandler(this.checkBox_RTS4_CheckedChanged);
+            this.checkBox_RTS4.CheckedChanged += new System.EventHandler(this.CheckBox_RTS4_CheckedChanged);
             // 
             // label27
             // 
@@ -1798,7 +1798,7 @@ namespace RS232_monitor_extlib
             this.checkBox_DTR4.TabIndex = 27;
             this.checkBox_DTR4.Text = "DTR";
             this.checkBox_DTR4.UseVisualStyleBackColor = true;
-            this.checkBox_DTR4.CheckedChanged += new System.EventHandler(this.checkBox_DTR4_CheckedChanged);
+            this.checkBox_DTR4.CheckedChanged += new System.EventHandler(this.CheckBox_DTR4_CheckedChanged);
             // 
             // label29
             // 
@@ -1842,7 +1842,7 @@ namespace RS232_monitor_extlib
             this.checkBox_sendPort3.TabIndex = 25;
             this.checkBox_sendPort3.Text = "Port3";
             this.checkBox_sendPort3.UseVisualStyleBackColor = true;
-            this.checkBox_sendPort3.CheckedChanged += new System.EventHandler(this.checkBox_send_CheckedChanged);
+            this.checkBox_sendPort3.CheckedChanged += new System.EventHandler(this.CheckBox_send_CheckedChanged);
             // 
             // checkBox_sendPort4
             // 
@@ -1856,7 +1856,7 @@ namespace RS232_monitor_extlib
             this.checkBox_sendPort4.TabIndex = 26;
             this.checkBox_sendPort4.Text = "Port4";
             this.checkBox_sendPort4.UseVisualStyleBackColor = true;
-            this.checkBox_sendPort4.CheckedChanged += new System.EventHandler(this.checkBox_send_CheckedChanged);
+            this.checkBox_sendPort4.CheckedChanged += new System.EventHandler(this.CheckBox_send_CheckedChanged);
             // 
             // checkBox_displayPort3hex
             // 
