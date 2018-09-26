@@ -2352,6 +2352,7 @@ const int inputCodePage = RS232_monitor.Properties.Settings.Default.CodePage;
         delegate void SetTextCallback1(string text);
         private void SetText(string text)
         {
+            text = Accessory.FilterZeroChar(text);
             // InvokeRequired required compares the thread ID of the
             // calling thread to the thread ID of the creating thread.
             // If these threads are different, it returns true.
